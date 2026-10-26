@@ -1,5 +1,8 @@
 "use strict";
 
+const SAVE_URL =
+  "https://script.google.com/macros/s/AKfycbz1pEJ95xrX5q_HCUV0_KzoVGRMyPNJznzf3jggF6p7zzJXp-Kg2g8QIPw25fyfCos55A/exec"; //This is the Apps Script we created to write the responses from the website to a Google Sheet
+
 // Page elements
 const introPanel = document.getElementById("intro-panel");
 const assessmentPanel = document.getElementById("assessment-panel");
@@ -219,6 +222,7 @@ function finishGame() {
   ).length;
 
   completedGame = {
+    submission_id: crypto.randomUUID(),
     participant_id: participantId,
     started_at: gameStartedAt,
     completed_at: new Date().toISOString(),
@@ -237,11 +241,55 @@ function finishGame() {
   resultsHeading.focus();
 }
 
-// Placeholder for the future Google Apps Script connection.
-function saveHighScore() {
-  if (!completedGame) {
+// Function to send High Score to Google Sheets
+async function saveHighScore() {
+  if (!completedGame || saveScoreButton.disabled) {
     return;
   }
+
+  saveScoreButton.disabled = true;
+  saveScoreButton.textContent = "Saving…";
+  saveStatus.textContent = "Sending your results…";
+
+  try {
+    const response = await fetch(SAVE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=UTF-8"
+      },
+      body: JSON.stringify(completedGame),
+      redirect: "follow"
+    });
+
+    if (!response.ok) {
+      throw new Error(`The receiver returned ${response.status}.`);
+    }
+
+    const result = await response.json();
+
+    if (
+      result.success !== true ||
+      result.submission_id !== completedGame.submission_id
+    ) {
+      throw new Error(
+        result.message || "The receiver did not confirm this submission."
+      );
+    }
+
+    saveScoreButton.textContent = "Score saved!";
+    saveStatus.textContent =
+      "Your score and email responses have been saved.";
+
+  } catch (error) {
+    console.error("Score saving failed:", error);
+
+    saveScoreButton.disabled = false;
+    saveScoreButton.textContent = "Retry saving";
+
+    saveStatus.textContent =
+      "We couldn't confirm the save. Please retry before closing this page.";
+  }
+}
 
   saveStatus.textContent =
     "Score saving isn't connected yet. Your results have not been sent.";
