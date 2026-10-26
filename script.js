@@ -291,9 +291,6 @@ async function saveHighScore() {
   }
 }
 
-  saveStatus.textContent =
-    "Score saving isn't connected yet. Your results have not been sent.";
-}
 
 // Button actions
 startButton.addEventListener("click", startGame);
