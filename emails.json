@@ -1,0 +1,20 @@
+{
+  "questionsPerGame": 2,
+  "emails": [
+    {
+      "id": "legitimate-meeting-reminder",
+      "image": "./images/legitimate-meeting-reminder.png",
+      "answer": "legitimate"
+    },
+    {
+      "id": "phishing-account-verification",
+      "image": "./images/phishing-account-verification.png",
+      "answer": "phishing"
+    },
+    {
+      "id": "legitimate-order-confirmation",
+      "image": "./images/legitimate-order-confirmation.png",
+      "answer": "legitimate"
+    }
+  ]
+}
