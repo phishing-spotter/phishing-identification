@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Can you spot the phishing emails? Play and test your skills."
+  >
+
+  <title>Spot the Phish</title>
+
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./script.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <h1>Spot the Phish</h1>
+    <p>Can you tell a real email from a phishing attempt?</p>
+  </header>
+
+  <main class="container">
+    <!-- Start screen -->
+    <section id="intro-panel" aria-labelledby="intro-heading">
+      <h2 id="intro-heading">Think you can spot them?</h2>
+
+      <p>
+        Read each email. Decide whether it's legitimate or phishing.
+        See how many you can get right.
+      </p>
+
+      <p id="loading-status" role="status">Loading…</p>
+
+      <button id="start-button" type="button" disabled>
+        Play
+      </button>
+    </section>
+
+    <!-- Game screen -->
+    <section
+      id="assessment-panel"
+      aria-labelledby="assessment-heading"
+      hidden
+    >
+      <h2 id="assessment-heading" tabindex="-1">Legitimate or phishing?</h2>
+
+      <p id="progress-text" role="status"></p>
+
+      <article class="email-card" aria-labelledby="email-subject">
+        <h3 id="email-subject"></h3>
+
+        <dl class="email-metadata">
+          <dt>From</dt>
+          <dd id="email-from"></dd>
+
+          <dt>To</dt>
+          <dd id="email-to"></dd>
+
+          <dt>Date</dt>
+          <dd id="email-date"></dd>
+        </dl>
+
+        <div id="email-body" class="email-body"></div>
+      </article>
+
+      <div
+        class="answer-buttons"
+        role="group"
+        aria-label="Classify this email"
+      >
+        <button id="legitimate-button" type="button">
+          Legitimate
+        </button>
+
+        <button id="phishing-button" type="button">
+          Phishing
+        </button>
+      </div>
+    </section>
+
+    <!-- Final score screen -->
+    <section
+      id="results-panel"
+      aria-labelledby="results-heading"
+      hidden
+    >
+      <h2 id="results-heading" tabindex="-1">Game over</h2>
+
+      <p>Your score</p>
+      <p id="final-score" class="score"></p>
+
+      <p>Player ID: <span id="participant-id"></span></p>
+
+      <button id="save-score-button" type="button">
+        Save high score
+      </button>
+
+      <p id="save-status" role="status"></p>
+    </section>
+
+    <noscript>
+      <p>Please enable JavaScript to play Spot the Phish.</p>
+    </noscript>
+  </main>
+</body>
+</html>
