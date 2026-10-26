@@ -2,18 +2,18 @@
   "questionsPerGame": 2,
   "emails": [
     {
-      "id": "legitimate-meeting-reminder",
-      "image": "./images/legitimate-meeting-reminder.png",
+      "id": "event-reminder-dummy",
+      "image": "./images/event-reminder-legit.png",
       "answer": "legitimate"
     },
     {
-      "id": "phishing-account-verification",
-      "image": "./images/phishing-account-verification.png",
+      "id": "reset-account-mobile-dummy",
+      "image": "./images/reset-account-phishing.png",
       "answer": "phishing"
     },
     {
-      "id": "legitimate-order-confirmation",
-      "image": "./images/legitimate-order-confirmation.png",
+      "id": "recruiting-offer-dummy",
+      "image": "./images/recruiting-offer-legit.png",
       "answer": "legitimate"
     }
   ]
